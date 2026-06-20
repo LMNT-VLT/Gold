@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gold Digger — Australian Prospecting Gear</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Rye&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bark:    #1C1209;
+  --saddle:  #2E1F0E;
+  --leather: #5C3D1E;
+  --nugget:  #C4922A;
+  --nugget2: #E8B84B;
+  --parch:   #E8D5A3;
+  --faded:   #A08B6E;
+  --muted:   #6B5540;
+  --gum:     #6B8E5A;
+  --gum2:    #8DB57A;
+  --white:   #F5EDD8;
+  --red:     #8B3A2A;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bark);color:var(--parch);font-family:'Libre Baskerville',serif;font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+
+/* ── TICKER ── */
+.ticker{background:var(--nugget);color:var(--bark);font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.06em;padding:7px 0;overflow:hidden;white-space:nowrap;}
+.ticker-inner{display:inline-block;animation:ticker 38s linear infinite;}
+.ticker-inner span{margin:0 40px;}
+@keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* ── NAV ── */
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 40px;border-bottom:1px solid var(--leather);background:var(--bark);position:sticky;top:0;z-index:200;}
+.nav-logo{text-decoration:none;display:flex;flex-direction:column;line-height:1;}
+.nav-logo-main{font-family:'Rye',serif;font-size:22px;color:var(--nugget);letter-spacing:0.06em;}
+.nav-logo-sub{font-family:'Space Mono',monospace;font-size:8px;color:var(--faded);letter-spacing:0.18em;text-transform:uppercase;margin-top:2px;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{color:var(--faded);text-decoration:none;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover{color:var(--nugget);}
+.nav-right{display:flex;align-items:center;gap:14px;}
+.cart-btn{font-family:'Space Mono',monospace;font-size:11px;background:var(--nugget);color:var(--bark);border:none;padding:9px 20px;cursor:pointer;font-weight:700;letter-spacing:0.08em;display:flex;align-items:center;gap:8px;transition:background 0.2s;}
+.cart-btn:hover{background:var(--nugget2);}
+.cart-count{background:var(--bark);color:var(--nugget);border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;}
+.cart-count.hidden{display:none;}
+
+/* ── HERO ── */
+.hero{padding:80px 40px 60px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.hero-eyebrow{font-family:'Space Mono',monospace;font-size:10px;color:var(--gum);letter-spacing:0.22em;text-transform:uppercase;margin-bottom:20px;}
+.hero-title{font-family:'Rye',serif;font-size:clamp(42px,5.5vw,72px);line-height:1.05;color:var(--white);margin-bottom:8px;}
+.hero-title em{font-style:normal;color:var(--nugget);}
+.hero-tagline{font-family:'Rye',serif;font-size:clamp(16px,2vw,22px);color:var(--gum2);margin-bottom:20px;font-style:italic;}
+.hero-body{color:var(--faded);font-size:14px;line-height:1.8;max-width:460px;margin-bottom:32px;}
+.hero-cta{display:inline-block;background:var(--nugget);color:var(--bark);font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:14px 30px;text-decoration:none;transition:background 0.2s;}
+.hero-cta:hover{background:var(--nugget2);}
+.hero-cta-ghost{display:inline-block;border:1px solid var(--leather);color:var(--faded);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:14px 30px;text-decoration:none;margin-left:12px;transition:all 0.2s;}
+.hero-cta-ghost:hover{border-color:var(--nugget);color:var(--nugget);}
+
+/* Hero visual — stacked stat cards */
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
+.hero-stat{background:var(--saddle);border:1px solid var(--leather);padding:24px 20px;}
+.hero-stat-val{font-family:'Rye',serif;font-size:32px;color:var(--nugget);line-height:1;margin-bottom:6px;}
+.hero-stat-label{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;line-height:1.5;}
+
+/* ── BROADSHEET DIVIDER ── */
+.broadsheet{border-top:2px solid var(--leather);border-bottom:2px solid var(--leather);padding:14px 40px;text-align:center;margin:0;background:var(--saddle);display:flex;align-items:center;justify-content:center;gap:20px;}
+.broadsheet-text{font-family:'Rye',serif;font-size:13px;color:var(--nugget);letter-spacing:0.14em;}
+.broadsheet-rule{flex:1;height:1px;background:var(--leather);max-width:200px;}
+
+/* ── TRUST BAR ── */
+.trust-bar{background:var(--saddle);border-bottom:1px solid var(--leather);}
+.trust-bar-inner{display:flex;justify-content:center;gap:48px;padding:18px 40px;max-width:1200px;margin:0 auto;flex-wrap:wrap;}
+.trust-item{display:flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;font-size:10px;color:var(--faded);letter-spacing:0.04em;}
+
+/* ── SECTION SHARED ── */
+.section-wrap{max-width:1200px;margin:0 auto;padding:60px 40px;}
+.section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:36px;border-bottom:1px solid var(--leather);padding-bottom:14px;}
+.section-title{font-family:'Rye',serif;font-size:28px;color:var(--white);letter-spacing:0.04em;}
+.section-count{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);}
+
+/* ── PRODUCT GRID ── */
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:3px;}
+.product-card{background:var(--saddle);border:1px solid var(--leather);padding:24px 22px 20px;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden;transition:border-color 0.25s;}
+.product-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--nugget),transparent);transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
+.product-card:hover{border-color:var(--nugget);}
+.product-card:hover::after{transform:scaleX(1);}
+.card-category{font-family:'Space Mono',monospace;font-size:9px;color:var(--gum);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:4px;}
+.card-name{font-family:'Rye',serif;font-size:18px;color:var(--white);line-height:1.2;}
+.card-desc{font-size:12px;color:var(--faded);line-height:1.7;flex:1;}
+.card-variant-label{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;}
+.card-variants{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;}
+.variant-btn{font-family:'Space Mono',monospace;font-size:9px;padding:5px 10px;border:1px solid var(--leather);color:var(--faded);background:var(--bark);cursor:pointer;transition:all 0.15s;letter-spacing:0.04em;}
+.variant-btn:hover{border-color:var(--faded);color:var(--parch);}
+.variant-btn.active{border-color:var(--nugget);color:var(--nugget);background:rgba(196,146,42,0.1);}
+.card-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--leather);padding-top:14px;margin-top:4px;}
+.card-price{font-family:'Rye',serif;font-size:26px;color:var(--nugget);line-height:1;}
+.card-price-sub{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);margin-top:2px;}
+.card-btn{background:var(--bark);border:1px solid var(--leather);color:var(--parch);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:9px 16px;cursor:pointer;transition:all 0.2s;}
+.card-btn:hover{background:var(--nugget);border-color:var(--nugget);color:var(--bark);}
+.card-btn.added{background:var(--gum);border-color:var(--gum);color:var(--white);}
+
+/* ── BRAND STRIP ── */
+.brand-strip{background:var(--nugget);padding:48px 40px;text-align:center;}
+.brand-strip-title{font-family:'Rye',serif;font-size:clamp(28px,4vw,48px);color:var(--bark);margin-bottom:12px;}
+.brand-strip-body{font-size:14px;color:var(--saddle);max-width:560px;margin:0 auto 28px;line-height:1.8;}
+.brand-strip-btn{display:inline-block;background:var(--bark);color:var(--nugget);font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:14px 30px;text-decoration:none;border:2px solid var(--bark);transition:all 0.2s;}
+.brand-strip-btn:hover{background:transparent;color:var(--bark);}
+
+/* ── CART DRAWER ── */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:300;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.cart-overlay.open{opacity:1;pointer-events:all;}
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:440px;max-width:100vw;background:var(--saddle);border-left:1px solid var(--leather);z-index:400;display:flex;flex-direction:column;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);}
+.cart-drawer.open{transform:translateX(0);}
+.cart-header{display:flex;align-items:center;justify-content:space-between;padding:22px 24px 18px;border-bottom:1px solid var(--leather);}
+.cart-title{font-family:'Rye',serif;font-size:20px;color:var(--white);letter-spacing:0.06em;}
+.cart-close{background:none;border:1px solid var(--leather);color:var(--faded);font-family:'Space Mono',monospace;font-size:10px;padding:6px 12px;cursor:pointer;transition:all 0.2s;}
+.cart-close:hover{border-color:var(--faded);color:var(--parch);}
+.cart-items{flex:1;overflow-y:auto;padding:16px 24px;}
+.cart-empty{text-align:center;padding:60px 0;}
+.cart-empty-icon{font-size:40px;margin-bottom:12px;}
+.cart-empty-text{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);}
+.cart-item{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--leather);}
+.cart-item-icon{font-size:28px;flex-shrink:0;width:40px;text-align:center;}
+.cart-item-info{flex:1;}
+.cart-item-name{font-family:'Rye',serif;font-size:14px;color:var(--white);}
+.cart-item-spec{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);margin-top:2px;}
+.cart-item-controls{display:flex;align-items:center;gap:10px;margin-top:10px;}
+.qty-btn{background:var(--bark);border:1px solid var(--leather);color:var(--parch);width:26px;height:26px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:'Space Mono',monospace;font-size:13px;transition:all 0.15s;}
+.qty-btn:hover{border-color:var(--nugget);color:var(--nugget);}
+.qty-display{font-family:'Space Mono',monospace;font-size:12px;color:var(--parch);min-width:24px;text-align:center;}
+.remove-btn{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);background:none;border:none;cursor:pointer;transition:color 0.2s;}
+.remove-btn:hover{color:var(--red);}
+.cart-item-price{font-family:'Rye',serif;font-size:18px;color:var(--nugget);text-align:right;flex-shrink:0;}
+.cart-footer{padding:20px 24px;border-top:1px solid var(--leather);}
+.cart-subtotal{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;}
+.cart-subtotal-label{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em;}
+.cart-subtotal-val{font-family:'Rye',serif;font-size:26px;color:var(--nugget);}
+.cart-note{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:16px;line-height:1.7;}
+.checkout-btn{width:100%;background:var(--nugget);color:var(--bark);border:none;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:15px;cursor:pointer;transition:background 0.2s;}
+.checkout-btn:hover{background:var(--nugget2);}
+.checkout-btn:disabled{background:var(--leather);color:var(--muted);cursor:not-allowed;}
+
+/* ── CHECKOUT MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal{background:var(--saddle);border:1px solid var(--leather);width:100%;max-width:580px;max-height:90vh;overflow-y:auto;}
+.modal-header{padding:26px 28px 20px;border-bottom:1px solid var(--leather);display:flex;justify-content:space-between;align-items:center;}
+.modal-title{font-family:'Rye',serif;font-size:22px;color:var(--white);letter-spacing:0.04em;}
+.modal-close{background:none;border:1px solid var(--leather);color:var(--faded);font-family:'Space Mono',monospace;font-size:10px;padding:6px 12px;cursor:pointer;transition:all 0.2s;}
+.modal-close:hover{border-color:var(--faded);color:var(--parch);}
+.modal-body{padding:24px 28px;}
+.order-summary{background:var(--bark);border:1px solid var(--leather);padding:16px;margin-bottom:22px;}
+.order-summary-title{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;}
+.order-line{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--leather);font-size:12px;gap:12px;}
+.order-line:last-child{border-bottom:none;}
+.order-line-name{color:var(--parch);flex:1;}
+.order-line-price{font-family:'Space Mono',monospace;color:var(--nugget);font-size:11px;white-space:nowrap;}
+.order-total-row{display:flex;justify-content:space-between;align-items:baseline;margin-top:12px;padding-top:12px;border-top:1px solid var(--leather);}
+.order-total-label{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em;}
+.order-total-val{font-family:'Rye',serif;font-size:26px;color:var(--nugget);}
+.form-group{margin-bottom:16px;}
+.form-label{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;display:block;margin-bottom:6px;}
+.form-input{width:100%;background:var(--bark);border:1px solid var(--leather);color:var(--parch);font-family:'Libre Baskerville',serif;font-size:13px;padding:10px 14px;outline:none;transition:border-color 0.2s;}
+.form-input:focus{border-color:var(--nugget);}
+.form-input::placeholder{color:var(--muted);}
+textarea.form-input{resize:vertical;min-height:70px;}
+.privacy-notice{background:var(--bark);border:1px solid var(--leather);padding:14px 16px;margin-bottom:16px;}
+.privacy-text{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);line-height:1.8;letter-spacing:0.02em;}
+.payment-section{margin-bottom:20px;}
+.payment-label{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;display:block;}
+.payment-options{display:flex;gap:8px;}
+.payment-opt{flex:1;border:1px solid var(--leather);padding:14px 12px;cursor:pointer;text-align:center;transition:all 0.2s;background:var(--bark);}
+.payment-opt:hover{border-color:var(--faded);}
+.payment-opt.selected{border-color:var(--nugget);background:rgba(196,146,42,0.08);}
+.payment-opt-icon{font-size:20px;margin-bottom:4px;}
+.payment-opt-name{font-family:'Space Mono',monospace;font-size:10px;color:var(--parch);letter-spacing:0.06em;}
+.payment-opt-sub{font-size:10px;color:var(--muted);margin-top:2px;}
+.submit-btn{width:100%;background:var(--nugget);color:var(--bark);border:none;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:15px;cursor:pointer;transition:background 0.2s;margin-top:8px;}
+.submit-btn:hover{background:var(--nugget2);}
+
+/* STRIPE placeholder */
+.stripe-wrap{background:var(--bark);border:1px solid var(--leather);padding:16px;margin-bottom:16px;}
+.stripe-label{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;display:block;}
+#stripe-card-element{padding:10px;background:var(--bark);color:var(--parch);}
+.stripe-note{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);margin-top:8px;}
+
+/* ── CONFIRMATION ── */
+.confirm-screen{padding:32px 28px;text-align:center;}
+.confirm-icon{font-size:48px;margin-bottom:16px;}
+.confirm-title{font-family:'Rye',serif;font-size:26px;color:var(--white);margin-bottom:8px;letter-spacing:0.04em;}
+.confirm-sub{font-size:13px;color:var(--faded);line-height:1.7;margin-bottom:20px;}
+.confirm-ref{font-family:'Space Mono',monospace;font-size:11px;background:var(--bark);border:1px solid var(--leather);padding:12px 20px;display:inline-block;color:var(--nugget);letter-spacing:0.1em;margin-bottom:20px;}
+.confirm-info{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);line-height:1.8;}
+.confirm-close{margin-top:20px;background:var(--bark);border:1px solid var(--leather);color:var(--parch);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;padding:12px 28px;cursor:pointer;transition:all 0.2s;}
+.confirm-close:hover{border-color:var(--nugget);color:var(--nugget);}
+
+/* ── FOOTER ── */
+footer{border-top:2px solid var(--leather);padding:40px;max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;}
+.footer-logo{font-family:'Rye',serif;font-size:18px;color:var(--nugget);letter-spacing:0.06em;}
+.footer-copy{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);}
+.footer-links{display:flex;gap:24px;list-style:none;}
+.footer-links a{color:var(--muted);text-decoration:none;font-family:'Space Mono',monospace;font-size:10px;transition:color 0.2s;}
+.footer-links a:hover{color:var(--nugget);}
+
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding:40px 20px;gap:40px;}.hero-stats{grid-template-columns:repeat(2,1fr);}  }
+@media(max-width:600px){nav{padding:12px 20px;}.nav-links{display:none;}.section-wrap{padding:40px 20px;}.trust-bar-inner{gap:20px;padding:16px 20px;}.cart-drawer{width:100vw;}footer{flex-direction:column;text-align:center;}.broadsheet{padding:14px 20px;}}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner" id="tickerInner"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="golddigger.html">
+    <span class="nav-logo-main">Gold Digger</span>
+    <span class="nav-logo-sub">Australian Prospecting Gear</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#sluice">Sluice Gear</a></li>
+    <li><a href="#footwear">Footwear</a></li>
+    <li><a href="#accessories">Accessories</a></li>
+    <li><a href="#about">Our Story</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="cart-btn" id="cartToggle">⛏ Cart <span class="cart-count hidden" id="cartCount">0</span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">// Est. Right Now, Built for the Long Run</p>
+    <h1 class="hero-title">Your last boss<br>will be a <em>river.</em></h1>
+    <p class="hero-tagline">We've got ya, cobba.</p>
+    <p class="hero-body">Serious prospecting gear at honest prices. No markup nonsense, no middlemen, no compromise. Every item sourced for the bloke who's done the sums and is seriously thinking about handing in the notice.</p>
+    <a href="#sluice" class="hero-cta">Shop the Kit</a>
+    <a href="#about" class="hero-cta-ghost">Our Story</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-val">Direct</div>
+      <div class="hero-stat-label">Sourced from manufacturer,<br>not retail middlemen</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-val">Fair</div>
+      <div class="hero-stat-label">Honest prices,<br>no gouging</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-val">Proven</div>
+      <div class="hero-stat-label">Gear tested where<br>it matters — in the field</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-val">Aus</div>
+      <div class="hero-stat-label">Run by prospectors,<br>for prospectors</div>
+    </div>
+  </div>
+</section>
+
+<!-- BROADSHEET DIVIDER -->
+<div class="broadsheet">
+  <div class="broadsheet-rule"></div>
+  <div class="broadsheet-text">⚖ The Gold Digger General Store ⚖</div>
+  <div class="broadsheet-rule"></div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item">🚚 Fast Australia-wide shipping</div>
+    <div class="trust-item">💳 Secure card payment via Stripe</div>
+    <div class="trust-item">🪙 Crypto accepted</div>
+    <div class="trust-item">🤝 We've got ya, cobba</div>
+    <div class="trust-item">✉ Real human support</div>
+  </div>
+</div>
+
+<!-- SLUICE GEAR -->
+<section class="section-wrap" id="sluice">
+  <div class="section-header">
+    <h2 class="section-title">Sluice Gear</h2>
+    <span class="section-count">Boxes · Mats · Dredges</span>
+  </div>
+  <div class="product-grid" id="sluiceGrid"></div>
+</section>
+
+<!-- FOOTWEAR -->
+<section class="section-wrap" id="footwear" style="padding-top:0">
+  <div class="section-header">
+    <h2 class="section-title">River Footwear & Waders</h2>
+    <span class="section-count">Stay dry. Stay safe.</span>
+  </div>
+  <div class="product-grid" id="footwearGrid"></div>
+</section>
+
+<!-- ACCESSORIES -->
+<section class="section-wrap" id="accessories" style="padding-top:0">
+  <div class="section-header">
+    <h2 class="section-title">Accessories & Recovery</h2>
+    <span class="section-count">The small stuff that matters</span>
+  </div>
+  <div class="product-grid" id="accessoriesGrid"></div>
+</section>
+
+<!-- BRAND STRIP -->
+<div class="brand-strip" id="about">
+  <h2 class="brand-strip-title">Built for the Dreamer<br>Who's Done the Sums</h2>
+  <p class="brand-strip-body">Gold Digger started because we got sick of paying retail prices for gear that comes from the same factories as the cheap stuff — just with a different label. We cut out the middlemen, sourced direct, and kept the margins honest. If you're serious about prospecting, we're serious about equipping you. We've got ya, cobba.</p>
+  <a href="#sluice" class="brand-strip-btn">Shop the Full Kit</a>
+</div>
+
+<footer>
+  <div class="footer-logo">Gold Digger</div>
+  <ul class="footer-links">
+    <li><a href="#sluice">Sluice Gear</a></li>
+    <li><a href="#footwear">Footwear</a></li>
+    <li><a href="#accessories">Accessories</a></li>
+    <li><a href="#">Shipping Policy</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Gold Digger · Australian Prospecting Gear</div>
+</footer>
+
+<!-- CART -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <span class="cart-title">Your Kit</span>
+    <button class="cart-close" id="cartClose">✕ Close</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-subtotal">
+      <span class="cart-subtotal-label">Total (AUD)</span>
+      <span class="cart-subtotal-val" id="cartTotal">$0.00</span>
+    </div>
+    <div class="cart-note">Secure checkout via Stripe. Fast Australia-wide shipping. Real human support if anything goes sideways.</div>
+    <button class="checkout-btn" id="checkoutBtn" disabled>Proceed to Checkout →</button>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal" id="checkoutModalBox"></div>
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║                    PRICE CONFIGURATION                          ║
+// ║         Edit prices here — everything updates automatically     ║
+// ╚══════════════════════════════════════════════════════════════════╝
+
+const PRICES = {
+  // SLUICE GEAR
+  sluice_box_70:    0.00,   // Sluice Box 70cm
+  sluice_box_80:    0.00,   // Sluice Box 80cm
+  sluice_box_100:   0.00,   // Sluice Box 1m
+  gold_trap_mat:    0.00,   // Gold Trap Mat
+  hand_dredge:      0.00,   // Hand Dredge / Concrete Pump
+  prospecting_bag:  0.00,   // Prospecting Bag
+
+  // FOOTWEAR
+  waders:           0.00,   // Waders
+  gum_boots:        0.00,   // Gum Boots
+  river_shoes:      0.00,   // River Shoes
+
+  // ACCESSORIES
+  snuffer_bottle:   0.00,   // Snuffer Bottle
+  vials:            0.00,   // Specimen Vials (pack)
+  retract_magnet:   0.00,   // Retractable Magnet
+};
+
+// Stripe publishable key — replace with your key from stripe.com/dashboard
+const STRIPE_KEY = 'PASTE_YOUR_STRIPE_PUBLISHABLE_KEY_HERE';
+
+// Apps Script URL for order recording
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwDkoDxCeQkeD-sUdtunfpbWo-P0GleEtwnqPA0sDoTrtbcokN5hKbfCTAm4R10gcrf/exec';
+
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║                  END OF PRICE CONFIGURATION                     ║
+// ╚══════════════════════════════════════════════════════════════════╝
+
+// ── PRODUCT CATALOGUE ──────────────────────────────────────────────
+const products = {
+  sluice: [
+    {
+      id: 'sluice-box',
+      category: 'Sluice Box',
+      name: 'Gold Digger Sluice Box',
+      desc: 'Lightweight aluminium sluice with adjustable Hungarian riffles. Collapsible for easy pack-in. The same unit you\'d pay triple for at a prospecting shop.',
+      icon: '🔩',
+      variants: [
+        {label:'70cm', price: PRICES.sluice_box_70},
+        {label:'80cm', price: PRICES.sluice_box_80},
+        {label:'1 metre', price: PRICES.sluice_box_100},
+      ]
+    },
+    {
+      id: 'gold-trap-mat',
+      category: 'Sluice Mat',
+      name: 'Gold Trap Mat',
+      desc: 'Vortex design engineered for energy dissipation and gold drop. The turbulence geometry keeps fine gold locked in while lighter material washes clear. Fits standard sluice widths.',
+      icon: '🟫',
+      variants: [{label:'Standard', price: PRICES.gold_trap_mat}]
+    },
+    {
+      id: 'hand-dredge',
+      category: 'Hand Dredge',
+      name: 'Heavy Duty Hand Dredge',
+      desc: 'Industrial concrete pump repurposed as the ultimate hand dredge. Multiple nozzle tips included. A fraction of the price of a yabby pump — more powerful, more durable.',
+      icon: '💧',
+      variants: [{label:'Standard + tips', price: PRICES.hand_dredge}]
+    },
+    {
+      id: 'prospecting-bag',
+      category: 'Field Bag',
+      name: 'Prospecting Field Bag',
+      desc: 'Heavy canvas with reinforced straps. Enough pockets for your classifier, vials, snuffer and a sandwich. Built to take a beating in the field.',
+      icon: '👜',
+      variants: [{label:'Standard', price: PRICES.prospecting_bag}]
+    },
+  ],
+  footwear: [
+    {
+      id: 'waders',
+      category: 'Waders',
+      name: 'River Waders',
+      desc: 'Chest-high neoprene waders with reinforced knees and anti-slip felt soles. Spend all day in the water without losing the feeling in your legs.',
+      icon: '🦺',
+      variants: [
+        {label:'S', price: PRICES.waders},
+        {label:'M', price: PRICES.waders},
+        {label:'L', price: PRICES.waders},
+        {label:'XL', price: PRICES.waders},
+        {label:'XXL', price: PRICES.waders},
+      ]
+    },
+    {
+      id: 'gum-boots',
+      category: 'Gum Boots',
+      name: 'Prospector Gum Boots',
+      desc: 'Heavy duty rubber with steel shank and non-slip sole. Good for the bank, the water\'s edge, and everything in between.',
+      icon: '🥾',
+      variants: [
+        {label:'7', price: PRICES.gum_boots},
+        {label:'8', price: PRICES.gum_boots},
+        {label:'9', price: PRICES.gum_boots},
+        {label:'10', price: PRICES.gum_boots},
+        {label:'11', price: PRICES.gum_boots},
+        {label:'12', price: PRICES.gum_boots},
+      ]
+    },
+    {
+      id: 'river-shoes',
+      category: 'River Shoes',
+      name: 'River Grip Shoes',
+      desc: 'Lightweight and fast-draining with felt-and-rubber hybrid sole. When you need to move fast between pools without changing footwear.',
+      icon: '👟',
+      variants: [
+        {label:'7', price: PRICES.river_shoes},
+        {label:'8', price: PRICES.river_shoes},
+        {label:'9', price: PRICES.river_shoes},
+        {label:'10', price: PRICES.river_shoes},
+        {label:'11', price: PRICES.river_shoes},
+        {label:'12', price: PRICES.river_shoes},
+      ]
+    },
+  ],
+  accessories: [
+    {
+      id: 'snuffer-bottle',
+      category: 'Recovery',
+      name: 'Snuffer Bottle',
+      desc: 'Squeeze-and-snuff fine gold from your pan without losing a flake. Curved tip for getting into corners. The essential finishing tool.',
+      icon: '💛',
+      variants: [{label:'Standard', price: PRICES.snuffer_bottle}]
+    },
+    {
+      id: 'vials',
+      category: 'Storage',
+      name: 'Specimen Vials',
+      desc: 'Airtight glass vials with screw cap. Show off your finds or store them safely. Pack of 10.',
+      icon: '🧪',
+      variants: [{label:'Pack of 10', price: PRICES.vials}]
+    },
+    {
+      id: 'retract-magnet',
+      category: 'Recovery',
+      name: 'Retractable Magnet',
+      desc: 'Heavy duty rare earth magnet on a retractable handle. Pull black sand and magnetite out of your pan without getting your hands dirty.',
+      icon: '🧲',
+      variants: [{label:'Standard', price: PRICES.retract_magnet}]
+    },
+  ],
+};
+
+// ── HELPERS ────────────────────────────────────────────────────────
+function fmt(n){ return '$' + n.toLocaleString('en-AU',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function r2(n){ return Math.round(n*100)/100; }
+function genRef(){ return 'GD-'+Date.now().toString(36).toUpperCase()+'-'+Math.random().toString(36).substr(2,4).toUpperCase(); }
+
+// ── BUILD PRODUCT CARDS ────────────────────────────────────────────
+function buildGrid(products, containerId){
+  const container = document.getElementById(containerId);
+  products.forEach(p => {
+    let activeVariant = 0;
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    const hasVariants = p.variants.length > 1;
+    card.innerHTML = `
+      <div class="card-category">${p.category}</div>
+      <div style="font-size:32px;margin-bottom:4px;">${p.icon}</div>
+      <div class="card-name">${p.name}</div>
+      <div class="card-desc">${p.desc}</div>
+      ${hasVariants ? `
+        <div class="card-variant-label">Select Size / Option</div>
+        <div class="card-variants" id="variants-${p.id}">
+          ${p.variants.map((v,i) => `<button class="variant-btn${i===0?' active':''}" data-idx="${i}" data-pid="${p.id}">${v.label}</button>`).join('')}
+        </div>` : ''}
+      <div class="card-footer">
+        <div>
+          <div class="card-price" id="price-${p.id}">${fmt(p.variants[0].price)}</div>
+          <div class="card-price-sub" id="spec-${p.id}">${p.variants[0].label}</div>
+        </div>
+        <button class="card-btn" id="atc-${p.id}">Add to Kit</button>
+      </div>`;
+    container.appendChild(card);
+
+    // Variant switching
+    if(hasVariants){
+      card.querySelector(`#variants-${p.id}`).addEventListener('click', e => {
+        if(!e.target.classList.contains('variant-btn')) return;
+        activeVariant = parseInt(e.target.dataset.idx);
+        card.querySelectorAll('.variant-btn').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        document.getElementById(`price-${p.id}`).textContent = fmt(p.variants[activeVariant].price);
+        document.getElementById(`spec-${p.id}`).textContent  = p.variants[activeVariant].label;
+      });
+    }
+
+    // Add to cart
+    card.querySelector(`#atc-${p.id}`).addEventListener('click', function(){
+      const v = p.variants[activeVariant];
+      addToCart({
+        key:        `${p.id}-${activeVariant}`,
+        id:         p.id,
+        icon:       p.icon,
+        name:       p.name,
+        spec:       v.label,
+        unitPrice:  v.price,
+        totalPrice: v.price,
+        qty:        1,
+      });
+      this.textContent = '✓ Added to Kit';
+      this.classList.add('added');
+      setTimeout(() => { this.textContent = 'Add to Kit'; this.classList.remove('added'); }, 1800);
+    });
+  });
+}
+
+buildGrid(products.sluice,      'sluiceGrid');
+buildGrid(products.footwear,    'footwearGrid');
+buildGrid(products.accessories, 'accessoriesGrid');
+
+// ── TICKER ────────────────────────────────────────────────────────
+(function buildTicker(){
+  const items = [
+    ...products.sluice,
+    ...products.footwear,
+    ...products.accessories,
+  ].map(p => `<span>${p.icon} ${p.name} — from ${fmt(p.variants[0].price)}</span>`).join('');
+  const div = `<span>⚖ YOUR LAST BOSS WILL BE A RIVER ⚖</span>`;
+  document.getElementById('tickerInner').innerHTML = items + div + items + div;
+})();
+
+// ── CART STATE ────────────────────────────────────────────────────
+let cart = JSON.parse(localStorage.getItem('gd_cart') || '[]');
+function saveCart(){ localStorage.setItem('gd_cart', JSON.stringify(cart)); }
+function cartTotal(){ return r2(cart.reduce((s,i) => s + i.totalPrice, 0)); }
+
+function addToCart(item){
+  const existing = cart.find(i => i.key === item.key);
+  if(existing){ existing.qty++; existing.totalPrice = r2(existing.unitPrice * existing.qty); }
+  else { cart.push(item); }
+  saveCart(); renderCart(); updateBadge(); openCart();
+}
+function removeFromCart(key){ cart = cart.filter(i => i.key !== key); saveCart(); renderCart(); updateBadge(); }
+function changeQty(key, delta){
+  const item = cart.find(i => i.key === key);
+  if(!item) return;
+  item.qty = Math.max(1, item.qty + delta);
+  item.totalPrice = r2(item.unitPrice * item.qty);
+  saveCart(); renderCart(); updateBadge();
+}
+function updateBadge(){
+  const count = cart.length;
+  const badge = document.getElementById('cartCount');
+  if(count > 0){ badge.textContent = cart.reduce((s,i)=>s+i.qty,0); badge.classList.remove('hidden'); }
+  else { badge.classList.add('hidden'); }
+  document.getElementById('checkoutBtn').disabled = count === 0;
+}
+function renderCart(){
+  const container = document.getElementById('cartItems');
+  document.getElementById('cartTotal').textContent = fmt(cartTotal());
+  if(cart.length === 0){
+    container.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon">⛏</div><div class="cart-empty-text">Your kit is empty, cobba.</div></div>';
+    return;
+  }
+  container.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <div class="cart-item-icon">${item.icon}</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-spec">${item.spec}</div>
+        <div class="cart-item-controls">
+          <button class="qty-btn" onclick="changeQty('${item.key}',-1)">−</button>
+          <span class="qty-display">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty('${item.key}',1)">+</button>
+          <button class="remove-btn" onclick="removeFromCart('${item.key}')">Remove</button>
+        </div>
+      </div>
+      <div class="cart-item-price">${fmt(item.totalPrice)}</div>
+    </div>`).join('');
+}
+
+function openCart(){ document.getElementById('cartDrawer').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); }
+function closeCart(){ document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); }
+document.getElementById('cartToggle').onclick = openCart;
+document.getElementById('cartClose').onclick  = closeCart;
+document.getElementById('cartOverlay').onclick = closeCart;
+
+// ── CHECKOUT ──────────────────────────────────────────────────────
+let selectedPayment = 'card';
+let stripeInstance, cardElement;
+
+document.getElementById('checkoutBtn').addEventListener('click', openCheckout);
+
+function openCheckout(){
+  closeCart();
+  const box   = document.getElementById('checkoutModalBox');
+  const total = cartTotal();
+  const ref   = genRef();
+
+  const stripeReady = STRIPE_KEY !== 'PASTE_YOUR_STRIPE_PUBLISHABLE_KEY_HERE';
+
+  box.innerHTML = `
+    <div class="modal-header">
+      <span class="modal-title">Checkout</span>
+      <button class="modal-close" id="modalClose">✕ Close</button>
+    </div>
+    <div class="modal-body">
+      <div class="order-summary">
+        <div class="order-summary-title">Your Kit</div>
+        ${cart.map(i => `
+          <div class="order-line">
+            <span class="order-line-name">${i.icon} ${i.name} · ${i.spec} × ${i.qty}</span>
+            <span class="order-line-price">${fmt(i.totalPrice)}</span>
+          </div>`).join('')}
+        <div class="order-total-row">
+          <span class="order-total-label">Total (AUD)</span>
+          <span class="order-total-val">${fmt(total)}</span>
+        </div>
+      </div>
+
+      <div class="form-group"><label class="form-label">Full Name</label><input type="text" class="form-input" id="custName" placeholder="Your full name"></div>
+      <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" id="custEmail" placeholder="your@email.com"></div>
+      <div class="form-group"><label class="form-label">WhatsApp Number</label><input type="tel" class="form-input" id="custWhatsApp" placeholder="+61 4xx xxx xxx"></div>
+      <div class="form-group"><label class="form-label">Shipping Address</label><textarea class="form-input" id="custAddress" placeholder="Street, Suburb, State, Postcode"></textarea></div>
+      <div class="form-group"><label class="form-label">Order Notes (optional)</label><input type="text" class="form-input" id="custNote" placeholder="Special instructions..."></div>
+
+      <div class="privacy-notice">
+        <p class="privacy-text">🔒 <strong style="color:var(--parch)">Your privacy is absolute.</strong> Your name, email, WhatsApp, and address are used solely to fulfil your order. This information is stored privately, never visible publicly, never sold, never shared with any third party under any circumstances.</p>
+      </div>
+
+      <div class="payment-section">
+        <span class="payment-label">Payment Method</span>
+        <div class="payment-options">
+          <div class="payment-opt${stripeReady?' selected':''}" id="opt-card" onclick="selectPayment('card')">
+            <div class="payment-opt-icon">💳</div>
+            <div class="payment-opt-name">CARD</div>
+            <div class="payment-opt-sub">Visa · Mastercard · Amex</div>
+          </div>
+          <div class="payment-opt${!stripeReady?' selected':''}" id="opt-crypto" onclick="selectPayment('crypto')">
+            <div class="payment-opt-icon">₿</div>
+            <div class="payment-opt-name">CRYPTO</div>
+            <div class="payment-opt-sub">BTC · USDT · others on request</div>
+          </div>
+          <div class="payment-opt" id="opt-bank" onclick="selectPayment('bank')">
+            <div class="payment-opt-icon">🏦</div>
+            <div class="payment-opt-name">BANK</div>
+            <div class="payment-opt-sub">Transfer · details on confirm</div>
+          </div>
+        </div>
+      </div>
+
+      ${stripeReady ? `
+      <div class="stripe-wrap" id="stripeWrap">
+        <span class="stripe-label">Card Details</span>
+        <div id="stripe-card-element"></div>
+        <div id="stripe-errors" style="color:var(--red);font-family:'Space Mono',monospace;font-size:10px;margin-top:8px;"></div>
+        <p class="stripe-note">🔒 Payments secured by Stripe. Card details never touch our servers.</p>
+      </div>` : `
+      <div style="background:var(--bark);border:1px solid var(--leather);padding:14px 16px;margin-bottom:16px;">
+        <p style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);line-height:1.8;">💳 Card payments coming soon — select Crypto or Bank Transfer for now.</p>
+      </div>`}
+
+      <button class="submit-btn" id="submitOrder" data-ref="${ref}">Place Order →</button>
+    </div>`;
+
+  selectedPayment = stripeReady ? 'card' : 'crypto';
+  document.getElementById('checkoutModal').classList.add('open');
+  document.getElementById('modalClose').onclick = closeCheckout;
+  document.getElementById('submitOrder').addEventListener('click', submitOrder);
+
+  // Init Stripe if key present
+  if(stripeReady){
+    stripeInstance = Stripe(STRIPE_KEY);
+    const elements = stripeInstance.elements();
+    cardElement = elements.create('card', {
+      style: {
+        base: { color: '#E8D5A3', fontFamily: 'Space Mono, monospace', fontSize: '14px', '::placeholder': { color: '#6B5540' } },
+        invalid: { color: '#8B3A2A' }
+      }
+    });
+    cardElement.mount('#stripe-card-element');
+    cardElement.addEventListener('change', e => {
+      document.getElementById('stripe-errors').textContent = e.error ? e.error.message : '';
+    });
+    // Hide stripe panel when non-card selected
+  }
+}
+
+function selectPayment(type){
+  selectedPayment = type;
+  ['card','crypto','bank'].forEach(t => {
+    document.getElementById('opt-'+t).classList.toggle('selected', t === type);
+  });
+  const sw = document.getElementById('stripeWrap');
+  if(sw) sw.style.display = type === 'card' ? 'block' : 'none';
+}
+
+function closeCheckout(){ document.getElementById('checkoutModal').classList.remove('open'); }
+
+async function submitOrder(){
+  const name     = document.getElementById('custName').value.trim();
+  const email    = document.getElementById('custEmail').value.trim();
+  const whatsapp = document.getElementById('custWhatsApp').value.trim();
+  const address  = document.getElementById('custAddress').value.trim();
+  const note     = document.getElementById('custNote').value.trim();
+  const ref      = document.getElementById('submitOrder').dataset.ref;
+
+  if(!name || !email){
+    if(!name)  document.getElementById('custName').style.borderColor  = 'var(--red)';
+    if(!email) document.getElementById('custEmail').style.borderColor = 'var(--red)';
+    return;
+  }
+
+  const total    = cartTotal();
+  const payLabel = selectedPayment === 'card' ? 'Credit / Debit Card (Stripe)' : selectedPayment === 'crypto' ? 'Crypto (BTC / USDT / other on request)' : 'Bank Transfer (AUD)';
+  const orderLines = cart.map(i => `${i.qty}× ${i.name} (${i.spec}) — ${fmt(i.totalPrice)}`).join('\n');
+
+  const btn = document.getElementById('submitOrder');
+  btn.textContent = 'Processing...';
+  btn.disabled = true;
+
+  // Handle Stripe card payment
+  if(selectedPayment === 'card' && stripeInstance && cardElement){
+    // In production: create PaymentIntent on server, confirm here
+    // For now — record order and show confirmation (Stripe integration requires backend)
+    // TODO: wire to Stripe PaymentIntent when backend is available
+  }
+
+  // Record order via Apps Script
+  const payload = {
+    action:           'submitOrder',
+    ref,
+    customerName:     name,
+    customerEmail:    email,
+    customerWhatsApp: whatsapp,
+    customerAddress:  address,
+    paymentMethod:    payLabel,
+    notes:            note || '',
+    orderDetail:      orderLines,
+    orderTotal:       fmt(total),
+    serialRanges:     [], // No serials for physical goods
+  };
+
+  // Save to localStorage
+  const localOrders = JSON.parse(localStorage.getItem('gd_orders') || '[]');
+  localOrders.push({...payload, date: new Date().toISOString()});
+  localStorage.setItem('gd_orders', JSON.stringify(localOrders));
+
+  // Send to Sheets + trigger email
+  (function sendToSheets(){
+    const cbName   = '__gdSubmit_' + Date.now();
+    const scriptEl = document.createElement('script');
+    window[cbName] = function(res){
+      delete window[cbName]; scriptEl.remove();
+      if(res && res.ok){ console.log('Order recorded:', res.ref); }
+      else { console.warn('Sheets response:', res); }
+    };
+    scriptEl.onerror = function(){ delete window[cbName]; scriptEl.remove(); };
+    scriptEl.src = APPS_SCRIPT_URL
+      + '?action=submitOrder'
+      + '&callback=' + cbName
+      + '&payload=' + encodeURIComponent(JSON.stringify(payload));
+    document.head.appendChild(scriptEl);
+  })();
+
+  // Show confirmation
+  const box = document.getElementById('checkoutModalBox');
+  const payInstructions = selectedPayment === 'card'
+    ? `Your order has been placed. We'll confirm payment and dispatch within 1 business day.`
+    : selectedPayment === 'crypto'
+    ? `Bitcoin (BTC) and USDT accepted. Other cryptocurrencies available on request. Wallet details will be sent to <strong>${email}</strong> within 24 hours.`
+    : `Bank transfer details will be sent to <strong>${email}</strong> within 24 hours. Use your order reference as the payment description.`;
+
+  box.innerHTML = `
+    <div class="confirm-screen">
+      <div class="confirm-icon">⛏</div>
+      <div class="confirm-title">You're all set, cobba.</div>
+      <div class="confirm-sub">Order received, ${name}. We'll be in touch at <strong>${email}</strong> shortly.</div>
+      <div class="confirm-ref">${ref}</div>
+      <div style="background:var(--bark);border:1px solid var(--leather);padding:16px 20px;text-align:left;margin-bottom:16px;">
+        <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">Payment</div>
+        <div style="font-size:12px;color:var(--parch);line-height:1.8;">${payInstructions}</div>
+      </div>
+      <div class="confirm-info">
+        Fast Australia-wide shipping · Real human support<br>
+        Returns accepted within 30 days in original condition.<br><br>
+        We've got ya, cobba. 🤝
+      </div>
+      <button class="confirm-close" onclick="closeCheckout();clearCart();">Keep Shopping</button>
+    </div>`;
+
+  cart = []; saveCart(); renderCart(); updateBadge();
+}
+
+function clearCart(){ cart = []; saveCart(); renderCart(); updateBadge(); }
+renderCart(); updateBadge();
+</script>
+</body>
+</html>
